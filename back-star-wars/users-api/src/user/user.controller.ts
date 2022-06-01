@@ -18,12 +18,16 @@ export class UserController {
 
   @Post('/create')
   @UsePipes()
-  async create(@Body() userDTO: UserDTO): Promise<any> {
+  async create(
+    @Body() userDTO: UserDTO
+    ): Promise<any> {
     return await this.userService.create(userDTO);
   }
 
   @Put()
-  async update(@Body() userDTO: UserDTO): Promise<any> {
+  async update(
+    @Body() userDTO: UserDTO
+    ): Promise<any> {
     return await this.userService.update(userDTO);
   }
 

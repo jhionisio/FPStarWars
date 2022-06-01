@@ -17,20 +17,24 @@ export class UserService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async create(createUser: UserDTO): Promise<any> {
-        this.userRepository.save(createUser);
+  async create(createUser: UserDTO
+    ): Promise<any> {
+    this.userRepository.save(createUser);
   }
 
-  async update(userDTO: UserDTO): Promise<any> {
+  async update(userDTO: UserDTO
+    ): Promise<any> {
     const userObj = await UserConverter.updateToUserEntity(userDTO);
     this.userRepository.update(userObj.userId, userObj);
   }
 
-  async find(): Promise<User[]> {
+  async find(
+    ): Promise<User[]> {
     return await this.userRepository.find();
   }
 
-  async findById(userId: number): Promise<User> {
+  async findById(userId: number
+    ): Promise<User> {
     return await this.userRepository.findOne({
       where: { userId: userId },
     });
