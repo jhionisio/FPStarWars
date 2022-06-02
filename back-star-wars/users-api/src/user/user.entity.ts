@@ -11,7 +11,7 @@ export class User {
   userId?: number;
 
   @Column({ name: 'nm_user' })
-  name?: string;
+  username?: string;
 
   @Column({ name: 'ds_password' })
   password?: string;

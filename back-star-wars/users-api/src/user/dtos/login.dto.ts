@@ -1,13 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { IsNotEmpty } from 'class-validator';
 
-export class UserEmailDTO {
+export class LoginDTO {
   @IsNotEmpty()
-  userEmailId?: number;
-
+  username: string;
+  
   @IsNotEmpty()
-  userId?: number;
-
-  @IsNotEmpty()
-  dsEmail: string;
+  password: string;
 }

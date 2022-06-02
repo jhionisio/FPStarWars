@@ -5,13 +5,13 @@ import { User } from '../user.entity';
 export class UserConverter {
   public static async toUserEntity(userDTO: UserDTO): Promise<User> {
     const {
-      name,
+      username,
       email,
       cellPhone,
       password
     } = userDTO;
     const user: User = {
-      name,
+      username,
       email,
       cellPhone,
       password
@@ -21,13 +21,13 @@ export class UserConverter {
 
   public static async updateToUserEntity(updateUser: UserDTO): Promise<User> {
     const {
-      name,
+      username,
       email,
       cellPhone,
       password
     } = updateUser;
     const user: User = {
-      name,
+      username,
       email,
       cellPhone,
       password

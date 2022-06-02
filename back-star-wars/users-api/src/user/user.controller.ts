@@ -6,8 +6,11 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
   UsePipes,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { LoginDTO } from './dtos/login.dto';
 import { UserDTO } from './dtos/user.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
@@ -22,6 +25,13 @@ export class UserController {
     @Body() userDTO: UserDTO
     ): Promise<any> {
     return await this.userService.create(userDTO);
+  }
+
+  @UseGuards(AuthGuard('local'))
+  @Post('login')
+  async login(req
+    ): Promise<any> {
+    return req;
   }
 
   @Put()
@@ -42,5 +52,12 @@ export class UserController {
     @Query('id') id: number,
   ): Promise<User> {
     return await this.userService.findById(id);
+  }
+
+  @Get('/getUserByName')
+  async getUserByName(
+    @Query('username') username: string,
+  ): Promise<User | undefined> {
+    return await this.userService.findByName(username);
   }
 }

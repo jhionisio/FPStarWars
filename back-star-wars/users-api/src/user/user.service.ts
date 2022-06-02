@@ -10,6 +10,13 @@ import { User } from './user.entity';
 import { UserConverter } from './converters/user-converters';
 import { InjectRepository } from '@nestjs/typeorm';
 
+export interface IUser{
+  username?: string;
+  password?: string;
+  email?: string;
+  cellPhone?: number;
+};
+
 @Injectable()
 export class UserService {
   constructor(
@@ -38,5 +45,11 @@ export class UserService {
     return await this.userRepository.findOne({
       where: { userId: userId },
     });
+  }
+
+  async findByName(username: string): Promise<IUser | undefined> {
+    return this.userRepository.findOne({
+      where: { username: username },
+    })
   }
 }

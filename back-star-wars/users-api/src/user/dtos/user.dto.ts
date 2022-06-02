@@ -6,10 +6,10 @@ export class UserDTO {
   userId?: number;
 
   @IsNotEmpty()
-  name: string;
+  username?: string;
   
   @IsNotEmpty()
-  password: string;
+  password?: string;
 
   @IsNotEmpty()
   cellPhone?: number;
