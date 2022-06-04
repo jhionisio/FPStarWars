@@ -10,6 +10,7 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { LoginDTO } from './dtos/login.dto';
 import { UserDTO } from './dtos/user.dto';
 import { User } from './user.entity';
@@ -34,6 +35,7 @@ export class UserController {
     return req;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put()
   async update(
     @Body() userDTO: UserDTO
@@ -41,12 +43,14 @@ export class UserController {
     return await this.userService.update(userDTO);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async getUser(
   ): Promise<User[]> {
     return await this.userService.find();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('/getUserById')
   async getUserById(
     @Query('id') id: number,
@@ -54,6 +58,7 @@ export class UserController {
     return await this.userService.findById(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('/getUserByName')
   async getUserByName(
     @Query('username') username: string,
